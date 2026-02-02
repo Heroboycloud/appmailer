@@ -1,8 +1,9 @@
 {
   "name": "appmailer",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "version": "1.0.2",
+  "type":"module",
+  "description": "My new app",
+  "main": "index.js",
   "scripts": {
   },
   "keywords": [],
