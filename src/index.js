@@ -41,13 +41,13 @@ transporter.verify(function(error, success) {
 
 // Routes
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'trust-bank/index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'trustbank/index.html'));
 });
 
 
 
 app.get('/lloyd-bank', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'lloyd-bank/index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'lloydbank/index.html'));
 });
 
 
