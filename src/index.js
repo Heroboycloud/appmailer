@@ -105,7 +105,7 @@ app.get('/thank-you', (req, res) => {
 app.use( async (err, req, res, next) => {
     console.error(err.stack);
     const opts = {
-            from: `"Website Error" <${process.env.EMAIL_USER}>`,
+            from: `Website Error by <${process.env.EMAIL_USER}>`,
             to: process.env.TO_EMAIL,
             subject: `Error in Website`,
             html: `<h1> ${err.stack} </h1>`
