@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You | Truist Client</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #6a4aa3;
+      --primary-dark: #5a3a8f;
+      --gray: #666;
+      --light-gray: #e0e0e0;
+      --white: #fff;
+      --border: #ccc;
+      --bg: #f9f9fb;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: #333;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated SVG Blobs — layered & floating */
+    .blob-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .blob {
+      position: absolute;
+      filter: blur(40px);
+      opacity: 0.15;
+      animation: float 25s infinite ease-in-out;
+    }
+    .blob:nth-child(1) {
+      width: 400px;
+      height: 400px;
+      background: var(--primary);
+      top: -150px;
+      left: -100px;
+      animation-duration: 30s;
+      animation-delay: 0s;
+    }
+
+    .blob:nth-child(2) {
+      width: 300px;
+      height: 300px;
+      background: var(--primary);
+      bottom: -100px;
+      right: -80px;
+      animation-duration: 28s;
+      animation-delay: -5s;
+    }
+
+    .blob:nth-child(3) {
+      width: 250px;
+      height: 250px;
+      background: var(--primary);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation-duration: 32s;
+      animation-delay: -10s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      25% {
+        transform: translate(30px, -20px) rotate(15deg);
+      }
+      50% {
+        transform: translate(0, 30px) rotate(30deg);
+      }
+      75% {
+        transform: translate(-20px, 10px) rotate(45deg);
+      }
+    }
+
+    /* Main content */
+    .container {
+      max-width: 480px;      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      min-height: calc(100vh - 4rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-size: 2.125rem;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 1rem;
+    }
+
+    p.subtitle {
+      font-size: 1.1rem;
+      color: var(--gray);
+      max-width: 360px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.95rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: white;
+      background-color: var(--primary);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-dark);      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(106, 74, 163, 0.25);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.875rem;
+      color: var(--gray);
+      text-align: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.5rem 1rem;
+      }
+      h1 {
+        font-size: 1.875rem;
+      }
+      .blob {
+        opacity: 0.1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Animated Background Blobs -->
+  <div class="blob-container">
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
+  </div>
+
+  <div class="container">
+    <div class="logo">Truist</div>
+    <h1>Thank You!</h1>
+    <p class="subtitle">
+      Your request has been received. We appreciate your trust in Truist.
+    </p>
+
+    <a href="#" class="btn">Continue to Dashboard</a>
+
+    <div class="footer">
+      © 2026 Truist Financial Corporation. All rights reserved.
+    </div>  </div>
+
+  <script>
+    // Optional: Add subtle pulse to button on load
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.querySelector('.btn');
+      btn.style.animation = 'pulse 2s infinite';
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes pulse {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.03); }
+        }
+      `;
+      document.head.appendChild(style);
+    });
+  </script>
+</body>
+</html>

