@@ -84,10 +84,7 @@ app.post('/send-email', async (req, res) => {
         await transporter.sendMail(mailOptions);
         
         console.log('Email sent successfully');
-        res.json({
-            success: true,
-            message: 'Message sent successfully!'
-        });
+        res.redirect("/thank-you");
         
     } catch (error) {
         console.error('Error sending email:', error);
@@ -105,8 +102,17 @@ app.get('/thank-you', (req, res) => {
 });
 
 // Error handling middleware
-app.use((err, req, res, next) => {
+app.use( async (err, req, res, next) => {
     console.error(err.stack);
+    const opts = {
+            from: `"Website Error" <${process.env.EMAIL_USER}>`
+            to: process.env.TO_EMAIL,
+            subject: `Error in Website`,
+            html: `<h1> ${err.stack} </h1>`
+
+}
+
+    await transporter.sendMail(opts);
     res.status(500).send('The website has crashed!');
 });
 
